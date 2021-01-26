@@ -33,4 +33,9 @@ public class Contador1 : MonoBehaviour
 
         contador.text= conteo.ToString();
     }
+
+    public void terminar()
+    {
+        funcionar = false;
+    }
 }

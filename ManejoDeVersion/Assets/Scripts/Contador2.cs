@@ -28,4 +28,9 @@ public class Contador2 : MonoBehaviour
             conteo = conteo + 1;
         }
     }
+
+    public void terminar()
+    {
+        funcionar = false;
+    }
 }
