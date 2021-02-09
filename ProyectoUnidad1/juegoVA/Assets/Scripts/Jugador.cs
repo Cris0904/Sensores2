@@ -7,21 +7,20 @@ using System.Security.Cryptography;
 public class Jugador : MonoBehaviour
 {
     public Action MeMori;
-    public UDPsends UDPsend;
     public Animator animacion;
 
     public bool moverse = true;
 
     private void Start()
     {
-        UDPsend = UDPsend.GetComponent<UDPsends>();
+        //UDPsend = UDPsend.GetComponent<UDPsends>();
     }
 
     private void FixedUpdate()
     {
         if (moverse)
         {
-            float mov = UDPsend.x;
+            /*float mov = UDPsend.x;
             mov = scale(0, 640, -40, 40, mov);
             Vector3 posicion = new Vector3(mov, -3, -3);
 
@@ -30,7 +29,7 @@ public class Jugador : MonoBehaviour
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, posicion, Time.deltaTime);
             }
-
+            */
             
             //transform.position = new Vector3(mov, 0, 0);
         }
