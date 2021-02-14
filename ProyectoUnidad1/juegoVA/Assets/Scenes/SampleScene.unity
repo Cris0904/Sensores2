@@ -2669,7 +2669,7 @@ GameObject:
   - component: {fileID: 1293012582}
   - component: {fileID: 1293012581}
   m_Layer: 0
-  m_Name: JustRead
+  m_Name: ReadWrite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2684,7 +2684,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1293012580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f294df8261a53a4aa88db1495509986, type: 3}
+  m_Script: {fileID: 11500000, guid: 54e527d82540a1a44a7d5957361b81cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serialController: {fileID: 0}

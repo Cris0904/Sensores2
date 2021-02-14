@@ -45,7 +45,6 @@ public class SampleUserPolling_ReadWrite : MonoBehaviour
             serialController.SendSerialMessage("Z");
         }
 
-
         //---------------------------------------------------------------------
         // Receive data
         //---------------------------------------------------------------------

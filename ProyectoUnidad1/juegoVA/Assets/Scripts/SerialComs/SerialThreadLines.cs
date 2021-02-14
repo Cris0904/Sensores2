@@ -36,6 +36,7 @@ public class SerialThreadLines : AbstractSerialThread
 
     protected override object ReadFromWire(SerialPort serialPort)
     {
+        if(serialPort)
         return serialPort.ReadLine();
     }
 }
