@@ -17,13 +17,14 @@ public class SerialOne : MonoBehaviour
     public SerialControllerOne serialController;
     enum States { init, active, inactive };
     States state;
-
+    bool enviar;
 
     // Initialization
     void Start()
     {
         serialController = GameObject.Find("SerialControllerOne").GetComponent<SerialControllerOne>();
         state = States.init;
+        enviar = true;
     }
 
 
@@ -34,11 +35,24 @@ public class SerialOne : MonoBehaviour
         switch (state)
         {
             case States.init:
-                byte[] msg = { 0x3E };
 
-                serialController.SendSerialMessage(msg);
+                if (enviar)
+                {
+                    byte[] msg = { 0x3E };
+                    serialController.SendSerialMessage(msg);
+                    enviar = false;
+                }
+                byte[] rcv = (byte[])serialController.ReadSerialMessage();
 
-
+                if(rcv[0] == 0x4A)
+                {
+                    state = States.active;
+                }
+                else
+                {
+                    Debug.Log("Inicio Fallido, Reintentando");
+                    enviar = true;
+                }
                 break;
             case States.active:
                 break;

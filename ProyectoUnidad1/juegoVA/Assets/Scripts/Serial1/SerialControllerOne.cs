@@ -126,12 +126,12 @@ public class SerialControllerOne : MonoBehaviour
     // Returns a new unread message from the serial device. You only need to
     // call this if you don't provide a message listener.
     // ------------------------------------------------------------------------
-    public string ReadSerialMessage()
+    public object ReadSerialMessage()
     {
         // Read the next message from the queue
         // Protocolo ascii
 
-        return (string)serialThread.ReadMessage();
+        return serialThread.ReadMessage();
     }
 
     // ------------------------------------------------------------------------
