@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Ardity (Serial Communication for Arduino + Unity)
  * Author: Daniel Wilches <dwilches@gmail.com>
  *
@@ -19,9 +19,9 @@ using System.IO.Ports;
  * 
  * For method comments, refer to the base class.
  */
-public class SerialThreadLines : AbstractSerialThread
+public class SerialThreadLine : AbstractSerialThreadd
 {
-    public SerialThreadLines(string portName,
+    public SerialThreadLine(string portName,
                              int baudRate,
                              int delayBeforeReconnecting,
                              int maxUnreadMessages)
@@ -31,12 +31,11 @@ public class SerialThreadLines : AbstractSerialThread
 
     protected override void SendToWire(object message, SerialPort serialPort)
     {
-        serialPort.WriteLine((string) message);
+        serialPort.Write((byte[])message, 0, ((byte[])message).Length);
     }
 
     protected override object ReadFromWire(SerialPort serialPort)
     {
-        if(serialPort)
         return serialPort.ReadLine();
     }
 }

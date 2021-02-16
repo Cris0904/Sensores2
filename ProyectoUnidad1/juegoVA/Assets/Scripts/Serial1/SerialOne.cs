@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Ardity (Serial Communication for Arduino + Unity)
  * Author: Daniel Wilches <dwilches@gmail.com>
  *
@@ -12,38 +12,50 @@ using System.Collections;
 /**
  * Sample for reading using polling by yourself, and writing too.
  */
-public class SampleUserPolling_ReadWrite : MonoBehaviour
+public class SerialOne : MonoBehaviour
 {
-    public SerialController serialController;
+    public SerialControllerOne serialController;
+    enum States { init, active, inactive };
+    States state;
+
 
     // Initialization
     void Start()
     {
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
-
-        Debug.Log("Press A or Z to execute some actions");
+        serialController = GameObject.Find("SerialControllerOne").GetComponent<SerialController>();
+        state = States.init;
     }
+
 
     // Executed each frame
     void Update()
     {
+
+        switch (state)
+        {
+            case States.init:
+                byte[] msg = { 0x3E };
+
+                serialController.SendMessage(msg);
+
+
+                break;
+            case States.active:
+                break;
+            case States.inactive:
+                break;
+            default:
+                break;
+
+        }
+
         //---------------------------------------------------------------------
         // Send data
         //---------------------------------------------------------------------
 
         // If you press one of these keys send it to the serial device. A
         // sample serial device that accepts this input is given in the README.
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log("Sending A");
-            serialController.SendSerialMessage("A");
-        }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Debug.Log("Sending Z");
-            serialController.SendSerialMessage("Z");
-        }
 
         //---------------------------------------------------------------------
         // Receive data

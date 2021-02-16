@@ -23,7 +23,7 @@ public class Jugador : MonoBehaviour
             /*float mov = UDPsend.x;
             mov = scale(0, 640, -40, 40, mov);
             Vector3 posicion = new Vector3(mov, -3, -3);
-
+ 
                
                 if(Vector3.Distance(posicion, transform.localPosition) > 1f)
             {

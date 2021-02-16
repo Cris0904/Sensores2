@@ -8,6 +8,7 @@
 
 using UnityEngine;
 using System.Threading;
+using System;
 
 /**
  * This class allows a Unity program to continually check for messages from a
@@ -23,7 +24,7 @@ using System.Threading;
  * on the integrity of the message. It's up to the one that makes sense of the
  * data.
  */
-public class SerialController : MonoBehaviour
+public class SerialControllerOne : MonoBehaviour
 {
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public string portName = "COM4";
@@ -53,7 +54,7 @@ public class SerialController : MonoBehaviour
 
     // Internal reference to the Thread and the object that runs in it.
     protected Thread thread;
-    protected SerialThreadLines serialThread;
+    protected SerialThreadLine serialThread;
 
 
     // ------------------------------------------------------------------------
@@ -63,8 +64,8 @@ public class SerialController : MonoBehaviour
     // ------------------------------------------------------------------------
     void OnEnable()
     {
-        serialThread = new SerialThreadLines(portName, 
-                                             baudRate, 
+        serialThread = new SerialThreadLine(portName,
+                                             baudRate,
                                              reconnectionDelay,
                                              maxUnreadMessages);
         thread = new Thread(new ThreadStart(serialThread.RunForever));
@@ -142,7 +143,7 @@ public class SerialController : MonoBehaviour
     // Puts a message in the outgoing queue. The thread object will send the
     // message to the serial device when it considers it's appropriate.
     // ------------------------------------------------------------------------
-    public void SendSerialMessage(string message)
+    public void SendSerialMessage(byte[] message)
     {
         serialThread.SendMessage(message);
     }
@@ -158,4 +159,5 @@ public class SerialController : MonoBehaviour
         this.userDefinedTearDownFunction = userFunction;
     }
 
+   
 }
