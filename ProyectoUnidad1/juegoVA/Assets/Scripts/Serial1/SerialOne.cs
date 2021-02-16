@@ -22,7 +22,7 @@ public class SerialOne : MonoBehaviour
     // Initialization
     void Start()
     {
-        serialController = GameObject.Find("SerialControllerOne").GetComponent<SerialController>();
+        serialController = GameObject.Find("SerialControllerOne").GetComponent<SerialControllerOne>();
         state = States.init;
     }
 
@@ -36,7 +36,7 @@ public class SerialOne : MonoBehaviour
             case States.init:
                 byte[] msg = { 0x3E };
 
-                serialController.SendMessage(msg);
+                serialController.SendSerialMessage(msg);
 
 
                 break;
@@ -66,12 +66,6 @@ public class SerialOne : MonoBehaviour
         if (message == null)
             return;
 
-        // Check if the message is plain data or a connect/disconnect event.
-        if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
-            Debug.Log("Connection established");
-        else if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_DISCONNECTED))
-            Debug.Log("Connection attempt failed or disconnection detected");
-        else
-            Debug.Log("Message arrived: " + message);
+        
     }
 }

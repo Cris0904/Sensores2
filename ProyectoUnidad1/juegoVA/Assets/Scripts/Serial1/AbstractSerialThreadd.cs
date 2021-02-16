@@ -149,7 +149,7 @@ public abstract class AbstractSerialThreadd
                     // to the console and notify the listener.
                     Debug.LogWarning("Exception: " + ioe.Message + " StackTrace: " + ioe.StackTrace);
                     if (enqueueStatusMessages)
-                        inputQueue.Enqueue(SerialController.SERIAL_DEVICE_DISCONNECTED);
+                        inputQueue.Enqueue(SerialControllerOne.SERIAL_DEVICE_DISCONNECTED);
 
                     // As I don't know in which stage the SerialPort threw the
                     // exception I call this method that is very safe in
@@ -192,7 +192,7 @@ public abstract class AbstractSerialThreadd
         serialPort.Open();
 
         if (enqueueStatusMessages)
-            inputQueue.Enqueue(SerialController.SERIAL_DEVICE_CONNECTED);
+            inputQueue.Enqueue(SerialControllerOne.SERIAL_DEVICE_CONNECTED);
     }
 
     // ------------------------------------------------------------------------
