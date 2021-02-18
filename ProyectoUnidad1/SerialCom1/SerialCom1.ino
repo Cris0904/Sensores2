@@ -15,7 +15,7 @@ void setup() {
 void taskcom() {
   enum class State {activado, desactivado};
   static State state = State::desactivado;
-  static byte s[1] = {0x4A};
+  static byte r[1] = {0x4A};
 
   switch (state) {
     case State::activado: //Boton para pausar y despausar el juego
@@ -27,7 +27,6 @@ void taskcom() {
       }
 
       if (localTime > 200) {
-        Serial.println("Y");
         Serial.write(msg, 1); //Mando 3D
         localTime = 0;
         lastTime = millis();
@@ -38,17 +37,16 @@ void taskcom() {
           digitalWrite(led, HIGH);
         }
       }
-
+i
 
       break;
 
-    case State::desactivado:
-      Serial.println("x");
+    case State::desactivado:  
       if (Serial.available() > 0) {
         Serial.readBytes(s, 1);
         if (s[0] == 0x3E) {
           state = State::activado;
-          Serial.write(s, 1); //Mando 4a para decir que ya esta activo
+          Serial.write(r, 1); //Mando 4a para decir que ya esta activo
         }
       }
       break;
