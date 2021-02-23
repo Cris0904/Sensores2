@@ -34,15 +34,15 @@ public class Canvas_Control : MonoBehaviour
 
     public void BotonJugar()
     {
-        //SceneManager.LoadScene(0);
-        gameManager.contar = true;
-        gameManager.conteo = 0;
-        panelDeMuerte.SetActive(false);
-        gameManager.meteoritosManager.Generar = true;
-        gameManager.puntaje = 0;
-        gameManager.jugador.moverse = true;
-        gameManager.AudioNave.Play();
-        gameManager.MusicaJuego.Play();
+            //SceneManager.LoadScene(0);
+            gameManager.contar = true;
+            gameManager.conteo = 0;
+            panelDeMuerte.SetActive(false);
+            gameManager.meteoritosManager.Generar = true;
+            gameManager.puntaje = 0;
+            gameManager.jugador.moverse = true;
+            gameManager.AudioNave.Play();
+            gameManager.MusicaJuego.Play();
     }
         
 

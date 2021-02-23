@@ -1201,6 +1201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animacion: {fileID: 359976583}
+  GameController: {fileID: 0}
   moverse: 1
 --- !u!58 &455422500
 CircleCollider2D:
@@ -1932,6 +1933,54 @@ RectTransform:
   m_AnchoredPosition: {x: -403.3, y: 213.13}
   m_SizeDelta: {x: 63.39453, y: 53.746857}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &855191133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 855191135}
+  - component: {fileID: 855191134}
+  m_Layer: 0
+  m_Name: SerialControllerTwo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &855191134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855191133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1df54c68b33334cbdaa72d50523bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM3
+  baudRate: 9600
+  messageListener: {fileID: 0}
+  reconnectionDelay: 1000
+  maxUnreadMessages: 5
+--- !u!4 &855191135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855191133}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 434.19595, y: 199.8262, z: -482.53027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903785341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,7 +2404,7 @@ MonoBehaviour:
   baudRate: 9600
   messageListener: {fileID: 0}
   reconnectionDelay: 1000
-  maxUnreadMessages: 1
+  maxUnreadMessages: 5
 --- !u!4 &1020362738
 Transform:
   m_ObjectHideFlags: 0
@@ -2979,7 +3028,7 @@ GameObject:
   - component: {fileID: 1598526234}
   - component: {fileID: 1598526233}
   m_Layer: 0
-  m_Name: SerialOneReadWrite
+  m_Name: SerialOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2997,7 +3046,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef8efe7c77be944cbafc9072d0af89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 925870551}
+  panelDeMuerte: {fileID: 1883571171}
   serialController: {fileID: 1020362737}
+  serialControllerTwo: {fileID: 0}
+  funcionando: 0
+  posicion: 0
 --- !u!4 &1598526234
 Transform:
   m_ObjectHideFlags: 0

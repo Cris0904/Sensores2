@@ -109,7 +109,7 @@ public abstract class AbstractSerialThreadd
     // the message to the serial device.
     // ------------------------------------------------------------------------
   
-    public void SendMessage(byte[] message)
+    public void SendMessage(object message)
     {
          outputQueue.Enqueue(message);
     }

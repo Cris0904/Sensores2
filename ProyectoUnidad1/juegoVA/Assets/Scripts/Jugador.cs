@@ -8,30 +8,39 @@ public class Jugador : MonoBehaviour
 {
     public Action MeMori;
     public Animator animacion;
-
+    public SerialOne GameController;
     public bool moverse = true;
 
     private void Start()
     {
         //UDPsend = UDPsend.GetComponent<UDPsends>();
+        GameController = GameObject.Find("SerialOne").GetComponent<SerialOne>();
     }
 
     private void FixedUpdate()
     {
         if (moverse)
         {
-            /*float mov = UDPsend.x;
-            mov = scale(0, 640, -40, 40, mov);
+            
+            float mov = GameController.posicion;
+            mov = scale(0, 1023, -40, 40, mov);
             Vector3 posicion = new Vector3(mov, -3, -3);
- 
-               
-                if(Vector3.Distance(posicion, transform.localPosition) > 1f)
+   
+            if(Vector3.Distance(posicion, transform.localPosition) > 1f)
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, posicion, Time.deltaTime);
             }
-            */
+            
             
             //transform.position = new Vector3(mov, 0, 0);
+        }
+
+        if (!GameController.funcionando)
+        {
+            
+            MeMori?.Invoke(); //Llamo el evento MeMori
+            moverse = false;  //Y me dejo de mover porque me mori
+            animacion.SetBool("vivo", false);
         }
     }
 
@@ -41,12 +50,12 @@ public class Jugador : MonoBehaviour
 
         if(obj != null) //Si el componente no es nulo (significa que golpee un meteorito) 
         {
+            GameController.funcionando = false;
             MeMori?.Invoke(); //Llamo el evento MeMori
             moverse = false;  //Y me dejo de mover porque me mori
             animacion.SetBool("vivo", false);
         }
     }
-
 
     public float scale(float OldMin, float OldMax, float NewMin, float NewMax, float OldValue)
     {

@@ -19,11 +19,11 @@ using System.IO.Ports;
  * 
  * For method comments, refer to the base class.
  */
-public class SerialThreadLine : AbstractSerialThreadd
+public class SerialThreadLineTwo : AbstractSerialThreadd
 {
     private byte[] buffer = new byte[1024];
 
-    public SerialThreadLine(string portName,
+    public SerialThreadLineTwo(string portName,
                              int baudRate,
                              int delayBeforeReconnecting,
                              int maxUnreadMessages)
@@ -33,12 +33,11 @@ public class SerialThreadLine : AbstractSerialThreadd
 
     protected override void SendToWire(object message, SerialPort serialPort)
     {
-        serialPort.Write((byte[])message, 0, ((byte[])message).Length);
+        serialPort.WriteLine((string)message);
     }
 
     protected override object ReadFromWire(SerialPort serialPort)
     {
-        serialPort.Read(buffer, 0, 1);
-        return buffer;
+        return serialPort.ReadLine();
     }
 }

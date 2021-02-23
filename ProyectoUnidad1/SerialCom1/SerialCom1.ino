@@ -17,17 +17,18 @@ void taskcom() {
   static State state = State::desactivado;
   static byte r[1] = {0x4A};
   static byte s[1] = {0x4A};
-  static byte e[1] = {0x3E}
+  static byte e[1] = {0x3E};
 
   switch (state) {
     case State::activado: //Boton para pausar y despausar el juego
       if (Serial.available() > 0) {
         Serial.readBytes(s, 1);
-        if (s[0] == 0x4A) {
-          state = State::activado;
-          Serial.write(e, 1); //Mando 4a para decir que ya esta activo
+        if (s[0] == 0x4a) {
+          state = State::desactivado;
+          Serial.write(e, 1); //Mando 3e para decir que ya esta activo
         }
-
+      
+      }
 
     
       x = digitalRead(button);
@@ -48,7 +49,7 @@ void taskcom() {
           digitalWrite(led, HIGH);
         }
       }
-i
+
 
       break;
 
@@ -63,6 +64,7 @@ i
       break;
   }
 }
+
 
 
 void loop() {
