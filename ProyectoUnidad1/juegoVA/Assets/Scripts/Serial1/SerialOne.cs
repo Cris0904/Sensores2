@@ -17,9 +17,6 @@ public class SerialOne : MonoBehaviour
 {
 
     
-    public Game_Manager gameManager;
-
-    public GameObject panelDeMuerte;
 
     public SerialControllerOne serialController;
     public SerialControllerTwo serialControllerTwo;
@@ -29,6 +26,7 @@ public class SerialOne : MonoBehaviour
     StatesActive statesActive;
     bool enviar=true;
     bool enviar2=true;
+    bool onoff = true;
     public bool funcionando;
     public int posicion;
 
@@ -37,11 +35,9 @@ public class SerialOne : MonoBehaviour
     {
         serialController = GameObject.Find("SerialControllerOne").GetComponent<SerialControllerOne>();
         serialControllerTwo = GameObject.Find("SerialControllerTwo").GetComponent<SerialControllerTwo>();
-        gameManager = GameObject.Find("Manager").GetComponent<Game_Manager>();
+        
         state = States.init;
         statesActive = StatesActive.init;
-        //enviar = true;
-        //enviar2 = true;
         posicion = 0;
         funcionando = false;
     }
@@ -69,7 +65,7 @@ public class SerialOne : MonoBehaviour
                 if (rc == null)
                 {
                     Debug.Log("Inicio Fallido, Reintentando");
-                    
+                    enviar = true;
                 }
                 else
                 {
@@ -85,7 +81,7 @@ public class SerialOne : MonoBehaviour
                     {
                         Debug.Log("Inicio incorrecto, Reintentando");
                         enviar = true;
-                        Debug.Log(rcv[0]);
+                        Debug.Log(rcv[0].ToString("X2"));
                     }
                 }
                 break;
@@ -94,14 +90,7 @@ public class SerialOne : MonoBehaviour
                 byte[] msg = (byte[])serialController.ReadSerialMessage();
                 funcionando = true;
                 //SceneManager.LoadScene(0);
-                gameManager.contar = true;
-                gameManager.conteo = 0;
-                panelDeMuerte.SetActive(false);
-                gameManager.meteoritosManager.Generar = true;
-                gameManager.puntaje = 0;
-                gameManager.jugador.moverse = true;
-                gameManager.AudioNave.Play();
-                gameManager.MusicaJuego.Play();
+                
 
                 if (msg == null)
                 {
@@ -113,6 +102,7 @@ public class SerialOne : MonoBehaviour
                     {
                         state = States.inactive;
                         Debug.Log("Desactivar");
+                        onoff = true;
                     }
                 }
                     break;
@@ -149,26 +139,27 @@ public class SerialOne : MonoBehaviour
                 {
                     string s = "on";
                     serialControllerTwo.SendSerialMessage(s);
+                    Debug.Log("Envío on");
                     enviar2 = false;
                 }
-                string rcv = (string)serialControllerTwo.ReadSerialMessage();
+                string rcvs = (string)serialControllerTwo.ReadSerialMessage();
 
-                if (rcv == null)
+                if (rcvs == null)
                 {
-                    Debug.Log("Inicio Fallido2, Reintentando");
-                    enviar = true;
+                    Debug.Log("Inicio Fallido2 Null, Reintentando");
+                    enviar2 = true;
                 }
                 else
                 {
-                    if (Equals(rcv, "on\n"))
-                    {
+                    if (rcvs.Equals("on"))
+                    {   
                         statesActive = StatesActive.active;
                         Debug.Log("Inicio Exitoso2");
                         funcionando = true;
                     }
                     else
                     {
-                        Debug.Log("Inicio Fallido2, Reintentando");
+                        Debug.Log("Inicio Incorrecto2, Reintentando" + rcvs);
                         enviar2 = true;
                     }
                 }

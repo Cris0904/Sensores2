@@ -19,7 +19,7 @@ using System.IO.Ports;
  * 
  * For method comments, refer to the base class.
  */
-public class SerialThreadLineTwo : AbstractSerialThreadd
+public class SerialThreadLineTwo : AbstractSerialThreadTwo
 {
     private byte[] buffer = new byte[1024];
 
@@ -33,7 +33,7 @@ public class SerialThreadLineTwo : AbstractSerialThreadd
 
     protected override void SendToWire(object message, SerialPort serialPort)
     {
-        serialPort.WriteLine((string)message);
+        serialPort.Write((string)message + '\n');
     }
 
     protected override object ReadFromWire(SerialPort serialPort)

@@ -401,50 +401,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61580617}
   m_CullTransparentMesh: 0
---- !u!1 &81557050
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 81557052}
-  - component: {fileID: 81557051}
-  m_Layer: 0
-  m_Name: UDPsends
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &81557051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81557050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795087328167e9949bc692b8d4f887fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 0
---- !u!4 &81557052
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81557050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 309.2992, y: 169.87637, z: -68.125}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &98019234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1071,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386384744
 GameObject:
@@ -1202,6 +1158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animacion: {fileID: 359976583}
   GameController: {fileID: 0}
+  gameManager: {fileID: 0}
+  panelDeMuerte: {fileID: 1883571171}
   moverse: 1
 --- !u!58 &455422500
 CircleCollider2D:
@@ -1966,7 +1924,7 @@ MonoBehaviour:
   baudRate: 9600
   messageListener: {fileID: 0}
   reconnectionDelay: 1000
-  maxUnreadMessages: 5
+  maxUnreadMessages: 1
 --- !u!4 &855191135
 Transform:
   m_ObjectHideFlags: 0
@@ -1979,7 +1937,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903785341
 GameObject:
@@ -2404,7 +2362,7 @@ MonoBehaviour:
   baudRate: 9600
   messageListener: {fileID: 0}
   reconnectionDelay: 1000
-  maxUnreadMessages: 5
+  maxUnreadMessages: 1
 --- !u!4 &1020362738
 Transform:
   m_ObjectHideFlags: 0
@@ -2417,7 +2375,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1030663924
 GameObject:
@@ -3046,8 +3004,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef8efe7c77be944cbafc9072d0af89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 925870551}
-  panelDeMuerte: {fileID: 1883571171}
   serialController: {fileID: 1020362737}
   serialControllerTwo: {fileID: 0}
   funcionando: 0
@@ -3064,7 +3020,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1638896535
 GameObject:
@@ -3280,36 +3236,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703085181}
   m_CullTransparentMesh: 0
---- !u!1 &1729194149
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1729194150}
-  m_Layer: 0
-  m_Name: UDPsends
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1729194150
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729194149}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1839151907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3624,5 +3550,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

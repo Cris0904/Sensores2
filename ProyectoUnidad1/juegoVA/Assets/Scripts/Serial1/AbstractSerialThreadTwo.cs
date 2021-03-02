@@ -21,7 +21,7 @@ using System.Threading;
  * open this file unless you are introducing incompatibilities for upcoming
  * versions.
  */
-public abstract class AbstractSerialThreadd
+public abstract class AbstractSerialThreadTwo
 {
     // Parameters passed from SerialController, used for connecting to the
     // serial device as explained in the SerialController documentation.
@@ -62,7 +62,7 @@ public abstract class AbstractSerialThreadd
     // Constructs the thread object. This object is not a thread actually, but
     // its method 'RunForever' can later be used to create a real Thread.
     // ------------------------------------------------------------------------
-    public AbstractSerialThreadd(string portName,
+    public AbstractSerialThreadTwo(string portName,
                                 int baudRate,
                                 int delayBeforeReconnecting,
                                 int maxUnreadMessages,
@@ -108,10 +108,10 @@ public abstract class AbstractSerialThreadd
     // output queue, later the method 'RunOnce' reads this queue and sends
     // the message to the serial device.
     // ------------------------------------------------------------------------
-  
+
     public void SendMessage(object message)
     {
-         outputQueue.Enqueue(message);
+        outputQueue.Enqueue(message);
     }
 
 
@@ -189,7 +189,7 @@ public abstract class AbstractSerialThreadd
         serialPort = new SerialPort(portName, baudRate);
         serialPort.ReadTimeout = readTimeout;
         serialPort.WriteTimeout = writeTimeout;
-        serialPort.DtrEnable = true;
+        serialPort.DtrEnable = false;
         serialPort.Open();
 
         if (enqueueStatusMessages)

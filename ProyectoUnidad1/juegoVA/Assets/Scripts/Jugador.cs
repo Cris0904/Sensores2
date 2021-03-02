@@ -9,12 +9,17 @@ public class Jugador : MonoBehaviour
     public Action MeMori;
     public Animator animacion;
     public SerialOne GameController;
+    int working = 0;
+
+    public Game_Manager gameManager;
+    public GameObject panelDeMuerte;
+
     public bool moverse = true;
 
     private void Start()
     {
-        //UDPsend = UDPsend.GetComponent<UDPsends>();
         GameController = GameObject.Find("SerialOne").GetComponent<SerialOne>();
+        gameManager = GameObject.Find("Manager").GetComponent<Game_Manager>();
     }
 
     private void FixedUpdate()
@@ -34,13 +39,31 @@ public class Jugador : MonoBehaviour
             
             //transform.position = new Vector3(mov, 0, 0);
         }
-
+        
         if (!GameController.funcionando)
         {
-            
-            MeMori?.Invoke(); //Llamo el evento MeMori
-            moverse = false;  //Y me dejo de mover porque me mori
-            animacion.SetBool("vivo", false);
+            if (working == 0)
+            {
+                MeMori?.Invoke(); //Llamo el evento MeMori
+                moverse = false;  //Y me dejo de mover porque me mori
+                animacion.SetBool("vivo", false);
+                working = 1;
+            }
+        }
+        else
+        {
+            if (working == 1)
+            {
+                gameManager.contar = true;
+                gameManager.conteo = 0;
+                panelDeMuerte.SetActive(false);
+                gameManager.meteoritosManager.Generar = true;
+                gameManager.puntaje = 0;
+                gameManager.jugador.moverse = true;
+                gameManager.AudioNave.Play();
+                gameManager.MusicaJuego.Play();
+                working = 0;
+            }
         }
     }
 

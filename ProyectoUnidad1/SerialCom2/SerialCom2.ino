@@ -1,4 +1,4 @@
-  int pinRes = A0;
+int pinRes = A0;
 int pinLed = 8;
 
 
@@ -12,28 +12,28 @@ void setup() {
 void taskcom() {
   enum class State {activado, desactivado};
   static State state = State::desactivado;
-  static int res = 0;
-  static int resBfr = 0;
+  static int res = analogRead(pinRes);
+  static int resBfr = analogRead(pinRes);
   
   switch (state) {
     case State::desactivado:
       if (Serial.available() > 0) {
-        String rcv = Serial.readString();
-        if (rcv.equals("on\n")) {
-          state = State::activado;
+        String rcv = Serial.readStringUntil('\n');
+        if (rcv.equals("on")) {
           Serial.println("on");
+          state = State::activado;
         }
       }
       break;
     case State::activado:
       if (Serial.available() > 0) {
-        String rcv = Serial.readString();
-        if (rcv.equals("off\n")) {
+        String rcv = Serial.readStringUntil('\n');
+        if (rcv.equals("off")) {
+          Serial.print("off\n");
           state = State::desactivado;
-          Serial.println("off");
         }         
       }
-
+  
       res = analogRead(pinRes);
 
       if(res-resBfr > 15 || res -resBfr < -15){

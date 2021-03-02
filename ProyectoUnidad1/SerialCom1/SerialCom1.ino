@@ -38,7 +38,7 @@ void taskcom() {
         lastTime = millis();
       }
 
-      if (localTime > 200) {        
+      if (localTime > 500) {        
         Serial.write(msg, 1); //Mando 3D
         localTime = 0;
         lastTime = millis();
@@ -57,8 +57,8 @@ void taskcom() {
       if (Serial.available() > 0) {
         Serial.readBytes(s, 1);
         if (s[0] == 0x3E) {
-          state = State::activado;
           Serial.write(r, 1); //Mando 4a para decir que ya esta activo
+          state = State::activado;
         }
       }
       break;
