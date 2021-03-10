@@ -25,7 +25,7 @@ void taskcom() {
         Serial.readBytes(s, 1);
         if (s[0] == 0x4a) {
           state = State::desactivado;
-          Serial.write(e, 1); //Mando 3e para decir que ya esta activo
+          Serial.write(e, 1); //Mando 3e para decir que ya esta inactivo
         }
       
       }

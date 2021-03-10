@@ -9,6 +9,7 @@
 using UnityEngine;
 using System.Threading;
 using System;
+using UnityEngine.UI;
 
 /**
  * This class allows a Unity program to continually check for messages from a
@@ -26,6 +27,7 @@ using System;
  */
 public class SerialControllerOne : MonoBehaviour
 {
+
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public string portName = "COM4";
 

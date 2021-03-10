@@ -1,4 +1,4 @@
-int pinRes = A0;
+  int pinRes = A0;
 int pinLed = 8;
 
 

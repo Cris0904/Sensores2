@@ -9,7 +9,7 @@ public class Jugador : MonoBehaviour
     public Action MeMori;
     public Animator animacion;
     public SerialOne GameController;
-    int working = 0;
+    int working = 1;
 
     public Game_Manager gameManager;
     public GameObject panelDeMuerte;
@@ -48,6 +48,7 @@ public class Jugador : MonoBehaviour
                 moverse = false;  //Y me dejo de mover porque me mori
                 animacion.SetBool("vivo", false);
                 working = 1;
+                panelDeMuerte.SetActive(true);
             }
         }
         else

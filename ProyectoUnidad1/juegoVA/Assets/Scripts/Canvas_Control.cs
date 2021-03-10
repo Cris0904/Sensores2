@@ -20,10 +20,18 @@ public class Canvas_Control : MonoBehaviour
     TextMeshProUGUI puntajeInGame, puntajeMuerte, Record;
 
     [SerializeField]
-    Button jugar,salir;
+    Button jugar, salir;
+
+    
+    public GameObject panelDeInicio;
     
 
     private void Start()
+    {
+        
+    }
+
+    public void Comenzar()
     {
         jugador.MeMori += CambiarPantalla;
         gameManager.CambioDePuntaje += CambiarPuntaje;

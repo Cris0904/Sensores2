@@ -9,6 +9,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 /**
  * Sample for reading using polling by yourself, and writing too.
@@ -16,7 +17,15 @@ using System;
 public class SerialOne : MonoBehaviour
 {
 
+
+    public InputField puerto1;
+    public InputField rate1; 
     
+    public InputField puerto2;
+    public InputField rate2;
+
+    public GameObject serialObject1;
+    public GameObject serialObject2;
 
     public SerialControllerOne serialController;
     public SerialControllerTwo serialControllerTwo;
@@ -35,6 +44,9 @@ public class SerialOne : MonoBehaviour
     {
         serialController = GameObject.Find("SerialControllerOne").GetComponent<SerialControllerOne>();
         serialControllerTwo = GameObject.Find("SerialControllerTwo").GetComponent<SerialControllerTwo>();
+
+        serialObject1 = GameObject.Find("SerialControllerOne");
+        serialObject2 = GameObject.Find("SerialControllerTwo");
         
         state = States.init;
         statesActive = StatesActive.init;
@@ -46,6 +58,24 @@ public class SerialOne : MonoBehaviour
     // Executed each frame
     void Update()
     {
+        if (serialController.portName != puerto1.text || serialController.baudRate != Convert.ToInt32(rate1.text) || serialControllerTwo.portName != puerto2.text || serialControllerTwo.baudRate != Convert.ToInt32(rate2.text)  ){
+            serialController.portName = puerto1.text;
+            serialController.baudRate = Convert.ToInt32(rate1.text);
+
+            serialControllerTwo.portName = puerto2.text;
+            serialControllerTwo.baudRate = Convert.ToInt32(rate2.text);
+            
+            serialController.SendSerialMessage(new byte[] { 0x4a });
+            serialControllerTwo.SendSerialMessage("off");
+
+            //serialObject1.SetActive(false);
+            serialObject2.SetActive(false);
+            //serialObject1.SetActive(true);
+            serialObject2.SetActive(true);
+
+            state = States.init;
+            statesActive = StatesActive.init;   
+        }
 
         switch (state)
         {

@@ -72,5 +72,7 @@ public class Game_Manager : MonoBehaviour
         AudioMuerte.Play();
         MusicaMuerte.Play();
         MusicaJuego.Stop();
+
+
     }
 }
