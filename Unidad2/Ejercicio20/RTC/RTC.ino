@@ -1,6 +1,6 @@
 #include <Reloj.h>
 #include <Wire.h>
-
+//Sensor, hora, minutos, segundos, dia, mes, año, diasemana
 Reloj reloj(104,4,0,0,1,4,21,4);
 
 void setup() {

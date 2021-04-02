@@ -82,3 +82,9 @@ void OnOff(){
     }
   } 
 }
+
+void loop(){
+  OnOff();
+  ReadTime();
+  delay(1000);
+}
