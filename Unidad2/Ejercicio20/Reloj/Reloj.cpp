@@ -1,28 +1,28 @@
+#include "Arduino.h"
+#include "Reloj.h"
 #include <Wire.h>
 
-int DS1307 = 104;
-int hour;
-int minute;
-int second;
-int year;
-int month;
-int monthday;
-int weekday;
-
-
-void setup()
+Reloj::Reloj(int _DS1307, int hora, int min, int sec, int dia, int mes, int ano, int sdia)
 {
-  Wire.begin(); // join i2c bus (address optional for master)
-  Serial.begin(9600);
-}
-byte decToBcd(byte val) {
+    DS1307= _DS1307;
+    hour = hora;
+    minute = min;
+    second = sec;
+    year = ano;
+    month = mes;
+    monthday = dia;
+    weekday = sdia;
+} 
+
+byte Reloj::decToBcd(byte val) {
   return ((val/10*16) + (val%10));
 }
-byte bcdToDec(byte val) {
+
+byte Reloj::bcdToDec(byte val) {
   return ((val/16*10) + (val%16));
 }
 
-void ReadTime(){
+void Reloj::ReadTime(){
   Wire.beginTransmission(DS1307);
   Wire.write(byte(0));
   Wire.endTransmission();
@@ -52,7 +52,7 @@ void ReadTime(){
    
 }
 
-void setTime(){    
+void Reloj::setTime(){    
   Wire.beginTransmission(DS1307);
   Wire.write(byte(0));
   Wire.write(decToBcd(second));
@@ -66,7 +66,7 @@ void setTime(){
   Wire.endTransmission();
 }
 
-void OnOff(){
+void Reloj::OnOff(){
   static int y =-1;
   Wire.beginTransmission(DS1307); // 
   int x = Wire.endTransmission();    // stop transmitting
