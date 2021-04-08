@@ -1,0 +1,5 @@
+Reloj   KEYWORD1
+ReadTime    KEYWORD2
+setTime KEYWORD2
+OnOff   KEYWORD2
+setReloj    KEYWORD2
