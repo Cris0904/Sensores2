@@ -1,13 +1,13 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "UNE_HFC_B9E0";
+const char* password = "ADBADDEF";
 WiFiUDP udpDevice;
-uint16_t localUdpPort = 2005;
-uint16_t UDPPort = 2004;
+uint16_t localUdpPort = 32001;
+uint16_t UDPPort = 32002;
 #define MAX_LEDSERVERS 3
-const char* hosts[MAX_LEDSERVERS] = {"192.168.1.14", "?.?.?.?", "?.?.?.?"};
+const char* hosts[MAX_LEDSERVERS] = {"192.168.1.12", "?.?.?.?", "?.?.?.?"};
 #define SERIALMESSAGESIZE 3
 uint32_t previousMillis = 0;
 #define ALIVE 1000
@@ -37,26 +37,11 @@ void setup() {
 }
 
 void networkTask() {
-  uint8_t LEDServer = 0;
-  uint8_t LEDValue = 0;
-  uint8_t syncChar;
-
-  // Serial event:
-  if (Serial.available() >= SERIALMESSAGESIZE) {
-    LEDServer = Serial.read() - '0';
-    LEDValue = Serial.read();
-    syncChar = Serial.read();
-    if ((LEDServer == 0) || (LEDServer > 3)) {
-      Serial.println("Servidor inválido (seleccione 1,2,3)");
-      return;
-    }
-    if (syncChar == '*') {
-      udpDevice.beginPacket(hosts[LEDServer - 1] , UDPPort);
-      udpDevice.write(LEDValue);
+  
+      udpDevice.beginPacket(hosts[0] , UDPPort);
+      udpDevice.write(123);
       udpDevice.endPacket();
-      Serial.print("enviado");
-    }
-  }
+
   // UDP event:
   uint8_t packetSize = udpDevice.parsePacket();
   if (packetSize) {
@@ -64,7 +49,7 @@ void networkTask() {
     Serial.print(udpDevice.remoteIP());
     Serial.print(":");
     Serial.print(udpDevice.remotePort());
-    Serial.print(' ');
+    Serial.println(' ');
     for (uint8_t i = 0; i < packetSize; i++) {
       Serial.write(udpDevice.read());
     }

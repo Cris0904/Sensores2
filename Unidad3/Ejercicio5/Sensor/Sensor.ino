@@ -1,10 +1,10 @@
  #include <WiFi.h>
  #include <WiFiUdp.h>
 
- const char* ssid = "";
- const char* password = "";
+ const char* ssid = "UNE_HFC_B9E0";
+ const char* password = "ADBADDEF";
  WiFiUDP udpDevice;
- uint16_t localUdpPort = 32002;
+ uint16_t localUdpPort = 32001;
  uint32_t previousMillis = 0;
  #define ALIVE 10000
  #define D0 5
@@ -39,6 +39,7 @@
    int info = digitalRead(D8);
 
    if(info == HIGH){   
+   Serial.println("XD..");
    udpDevice.beginPacket(udpDevice.remoteIP(), udpDevice.remotePort());
    udpDevice.write('S');
    udpDevice.write('e');
@@ -58,19 +59,8 @@
      
  }
 
- void aliveTask() {
-     uint32_t currentMillis;
-     static uint8_t ledState = 0;
-     currentMillis  = millis();
-     if ((currentMillis - previousMillis) >= ALIVE) {
-         previousMillis = currentMillis;
-         if (ledState == 0) digitalWrite(D8, HIGH);
-         else digitalWrite(D8, LOW);
-     }
- }
 
  void loop() {
      networkTask();
-     aliveTask();
      delay(100);
  }
